@@ -26,3 +26,8 @@ def get_project_by_id(id:int,db:Session=Depends(get_db)):
 @router.get('/',status_code=status.HTTP_200_OK,response_model=list[ProjectDisplay],summary="Get all projects",)
 def get_projects(db:Session=Depends(get_db)):
     return db_project.get_all_projects(db)
+
+#Delete Project
+@router.delete('/{id}',status_code=status.HTTP_200_OK,summary="Delete project by id",)
+def delete_project_by_id(id:int,db:Session=Depends(get_db)):
+    return db_project.delete_project_by_id(db,id)

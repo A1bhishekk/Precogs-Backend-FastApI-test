@@ -4,6 +4,7 @@ from schemas import ProjectBase
 from db.models import DbProject
 
 
+
 def create_project(db:Session,request:ProjectBase):
     new_project = DbProject(name=request.name,github_url=request.github_url,user_id=request.creator_id)
     db.add(new_project)
@@ -22,3 +23,8 @@ def get_all_projects(db:Session):
     return projects
 
 
+def delete_project_by_id(db:Session,id:int):
+    project = db.query(DbProject).filter(DbProject.id==id).first()
+    db.delete(project)
+    db.commit()
+    return "ok"

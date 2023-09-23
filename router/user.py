@@ -46,12 +46,12 @@ def get_total_users_route(db: Session = Depends(get_db)):
     return {"total_users": total_users, "total_projects": total_projects}
 
 
-@router.get("/summary")
-def get_user_summary(db: Session = Depends(get_db)):
-    # Use SQLAlchemy's func.sum to calculate the sum of user_id column
-    total = db.query(func.sum(DbProject.id).label("total")).scalar()
+# @router.get("/summary")
+# def get_user_summary(db: Session = Depends(get_db)):
+#     # Use SQLAlchemy's func.sum to calculate the sum of user_id column
+#     total = db.query(func.sum(DbProject.id).label("total")).scalar()
     
-    # db.close()
+#     # db.close()
     
-    return {"total": total}
+#     return {"total": total}
    
