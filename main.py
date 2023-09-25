@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from db import models
 from db.database import engine
-from router import user,project
+from router import user,project,scan
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -12,6 +12,7 @@ app = FastAPI(
 )
 app.include_router(user.router)
 app.include_router(project.router)
+app.include_router(scan.router)
 
 # CORS
 origins = [

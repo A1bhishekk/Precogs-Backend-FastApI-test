@@ -8,7 +8,7 @@ class Project(BaseModel):
     name:str
     github_url:str
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserBase(BaseModel):
@@ -24,13 +24,13 @@ class UserDisplay(BaseModel):
     created_at: datetime  # Add created_at field
     projects:List[Project] = []
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class User(BaseModel):
     id:int
     username: str
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class ProjectBase(BaseModel):
@@ -47,6 +47,24 @@ class ProjectDisplay(BaseModel):
       created_at: datetime  # Add created_at field
       user:User
       class Config:
-          orm_mode=True
+          from_attributes=True
 
 
+class ScanBase(BaseModel):
+    project_id: int
+    line_of_code: int
+    total_vul: int
+    type_of_vul: str
+    total_issues: int
+
+class ScanDisplay(BaseModel):
+    id: int
+    project_id: int
+    line_of_code: int
+    total_vul: int
+    type_of_vul: str
+    total_issues: int
+    created_at: datetime  # Add created_at field
+    project:Project
+    class Config:
+        from_attributes = True
